@@ -3,31 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Réplica - Consulta de documento (SIGED)</title>
+  <title>Consulta de documentos académicos electrónicos — SIGED</title>
 
-  <!-- Opción A: Enlace CSS con cache-bust (rápido y simple) -->
+  <!-- Enlace al CSS con cache-bust (incrementa el valor cuando actualices CSS) -->
   <link rel="stylesheet" href="./styles.css?v=20251030">
 
-  <!-- Opción B (alternativa robusta): si prefieres añadir dinámicamente el CSS para evitar cache -->
-  <!--
-  <script>
-    (function(){
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      // añade timestamp para forzar recarga
-      link.href = './styles.css?v=' + new Date().getTime();
-      document.head.appendChild(link);
-    })();
-  </script>
-  -->
-
+  <!-- Metadatos recomendados -->
+  <meta name="description" content="Consulta de documentos electrónicos de titulación — réplica para pruebas.">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="topbar">
       <div class="container topbar-inner">
-        <div class="seal">Gobierno de México</div>
-        <nav class="top-actions">
+        <div class="seal" aria-hidden="true">Gobierno de México</div>
+        <nav class="top-actions" aria-label="Acciones">
           <a href="#">Trámites</a>
           <a href="#">Gobierno</a>
           <button aria-label="Buscar" class="search">🔍</button>
@@ -35,21 +24,23 @@
       </div>
     </div>
 
-    <div class="goldbar">
-      <div class="container">
-        <div class="brand">SIGED</div>
-        <ul class="nav">
-          <li><a href="#">¿Quiénes somos?</a></li>
-          <li><a href="#">Consultas</a></li>
-          <li><a href="#">Estadística Educativa</a></li>
-          <li><a href="#">Indicadores Educativos</a></li>
-          <li><a href="#">Datos abiertos</a></li>
-          <li><a href="#">Aviso de Privacidad</a></li>
+    <div class="goldbar" role="navigation" aria-label="Barra principal">
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+        <!-- Marca: enlace puntual al SIGED oficial -->
+        <a class="brand" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer">SIGED</a>
+
+        <ul class="nav" role="menubar" aria-label="Menú principal">
+          <li role="none"><a role="menuitem" href="#">¿Quiénes somos?</a></li>
+          <li role="none"><a role="menuitem" href="#">Consultas</a></li>
+          <li role="none"><a role="menuitem" href="#">Estadística Educativa</a></li>
+          <li role="none"><a role="menuitem" href="#">Indicadores Educativos</a></li>
+          <li role="none"><a role="menuitem" href="#">Datos abiertos</a></li>
+          <li role="none"><a role="menuitem" href="#">Aviso de Privacidad</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="hero">
+    <div class="hero" role="region" aria-label="Encabezado">
       <div class="container hero-inner">
         <h1>Sistema de Información y Gestión Educativa</h1>
         <h2>Consulta de documentos académicos electrónicos</h2>
@@ -57,15 +48,15 @@
     </div>
   </header>
 
-  <main class="container">
-    <section class="card">
+  <main class="container" role="main">
+    <section class="card" aria-labelledby="detalle-title">
       <div class="row" style="align-items:center;">
         <div style="width:70px">
           <img class="img_resp" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%235C1530'/%3E%3Ctext x='50%25' y='55%25' fill='%23fff' font-size='8' text-anchor='middle' font-family='Arial' dy='.35em'%3ETE%3C/text%3E%3C/svg%3E" alt="Título Electrónico">
         </div>
 
         <div class="col">
-          <label>Nombre:</label>
+          <label id="detalle-title">Nombre:</label>
           <div class="value">ERIKA ELIZABETH ESPINOZA MARQUEZ</div>
         </div>
 
@@ -93,5 +84,22 @@
       </div>
     </section>
   </main>
+
+  <!-- Opcional: script para añadir CSS dinámicamente y forzar versión (descomentar si lo prefieres) -->
+  <!--
+  <script>
+    (function(){
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = './styles.css?v=' + new Date().getTime();
+      document.head.appendChild(link);
+    })();
+  </script>
+  -->
+
+  <!-- Pie mínimo -->
+  <footer class="container" style="padding:20px 0;color:#6b6b6b;font-size:0.9rem;">
+    <p style="margin:0">Réplica para pruebas — no es el sitio oficial.</p>
+  </footer>
 </body>
 </html>
