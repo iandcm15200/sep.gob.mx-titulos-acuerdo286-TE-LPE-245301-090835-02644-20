@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Réplica - Consulta de documento (SIGED)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#f6f6f6; margin:0; padding:24px; color:#101010; }
+    .card { max-width:900px; margin:24px auto; background:#fff; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.08); padding:20px; }
+    .header { background:#10312B; color:#fff; padding:18px; border-radius:6px; margin-bottom:16px; }
+    .row { display:flex; flex-wrap:wrap; gap:12px; }
+    .col { flex:1 1 240px; min-width:200px; }
+    label { font-weight:700; display:block; margin-bottom:6px; color:#333; }
+    .value { background:#f4f4f4; padding:10px; border-radius:4px; }
+    .meta { color:#666; font-size:0.9rem; }
+    .img_resp { width:50px; height:auto; display:block; margin-bottom:8px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <h2 style="margin:0">Consulta de documentos electrónicos de titulación</h2>
+      <div class="meta">Acuerdo 286 — Detalle del documento</div>
+    </div>
+
+    <div class="row" style="align-items:center;">
+      <div style="width:70px">
+        <!-- imagen de ejemplo local -->
+        <img class="img_resp" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%2310312B'/%3E%3Ctext x='50%25' y='55%25' fill='%23fff' font-size='8' text-anchor='middle' font-family='Arial' dy='.35em'%3ETE%3C/text%3E%3C/svg%3E" alt="Título Electrónico">
+      </div>
+
+      <div class="col">
+        <label>Nombre:</label>
+        <div class="value">ERIKA ELIZABETH ESPINOZA MARQUEZ</div>
+      </div>
+
+      <div class="col">
+        <label>Perfil:</label>
+        <div class="value" style="text-transform:uppercase">LICENCIATURA EN PEDAGOGÍA</div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:16px;">
+      <div class="col">
+        <label>Dependencia:</label>
+        <div class="value" style="text-transform:uppercase">DIRECCIÓN GENERAL DE ACREDITACIÓN, INCORPORACIÓN Y REVALIDACIÓN</div>
+      </div>
+
+      <div class="col">
+        <label>Folio:</label>
+        <div class="value">TE-LPE-245301-090835-02644-20</div>
+      </div>
+
+      <div class="col">
+        <label>Fecha de Expedición:</label>
+        <div class="value">12/06/2020</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
