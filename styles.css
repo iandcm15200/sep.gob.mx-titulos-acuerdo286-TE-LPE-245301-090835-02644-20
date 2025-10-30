@@ -1,487 +1,138 @@
 /* ------------------------------------------------------------------
-   styles.css - versión completa y consolidada
-   - Contiene tus variables base (pegadas dentro de :root)
-   - Sobrescribe las variables para usar la paleta SIGED (granate/dorado/crema)
-   - Incluye reglas con mayor especificidad y !important al final
-   Reemplaza el styles.css actual por este archivo.
+   styles.css - ajustes finales para paleta SIGED y link de marca
+   - Actualiza la banda dorada al color solicitado (#A57F2C)
+   - Aplica estilo a .brand para usar "Noto Sans", tamaño ~20.8px y texto blanco
+   - Aumenta especificidad para que estos estilos ganen frente a frameworks
    ------------------------------------------------------------------*/
 
-/* -----------------------------
-   Base: variables y resets (user-provided)
-   ----------------------------- */
+/* --- Variables y overrides relevantes --- */
 :root{
-    line-height: 1.5;
-    tab-size: 4;
-    font-feature-settings: normal;
-    font-variation-settings: normal;
-    font-family: inherit;
-    -webkit-text-size-adjust: 100%;
-    font-size: 10px;
-    -webkit-tap-highlight-color: transparent;
-    --aiinhbfoop-height-vh-100: 100vh;
-    --aiinhbfoop-height-100: 100dvh;
-    --aiinhbfoop-height-vh-95: 95vh;
-    --aiinhbfoop-height-95: 95dvh;
-    --aiinhbfoop-height-vh-90: 90vh;
-    --aiinhbfoop-height-90: 90dvh;
-    --aiinhbfoop-height-vh-75: 75vh;
-    --aiinhbfoop-height-75: 75dvh;
-    --aiinhbfoop-master-color: 1, 167, 125;
-    --aiinhbfoop-primary-color: rgba(var(--aiinhbfoop-fg-rgb), .8);
-    --aiinhbfoop-primary-text-color: rgba(var(--aiinhbfoop-fg-rgb), .8);
-    --aiinhbfoop-primary-content-text-color: rgba(var(--aiinhbfoop-fg-rgb), .65);
-    --aiinhbfoop-primary-title-color: rgba(var(--aiinhbfoop-fg-rgb), .8);
-    --aiinhbfoop-secondary-text-color: rgba(var(--aiinhbfoop-fg-rgb), .4);
-    --aiinhbfoop-bg-opacity: 1;
-    --aiinhbfoop-html-bg-color: rgb(240, 242, 245);
-    --aiinhbfoop-option-bg-color: #f0f2f5;
-    --aiinhbfoop-option-card-bg-color: white;
-    --aiinhbfoop-option-card-border: 1px solid #f0f0f0;
-    --aiinhbfoop-border-radius-lg: 12px;
-    --aiinhbfoop-border-radius: 8px;
-    --aiinhbfoop-sidebar-bg-color: #fff;
-    --aiinhbfoop-sidebar-shadow: 0px 0px 10px rgba(0, 0, 0, .3);
-    --aiinhbfoop-sidebar-border-color: #ececec;
-    --aiinhbfoop-sidebar-icon-color: #545758;
-    --aiinhbfoop-sidebar-icon-hover-color: rgba(var(--aiinhbfoop-main-color), .1);
-    --aiinhbfoop-sidebar-icon-border-color: #ececee;
-    --aiinhbfoop-sidebar-scrollbar-color: #e1e1e1;
-    --aiinhbfoop-sidebar-scrollbar-hover-color: #d9d9d9;
-    --aiinhbfoop-fg-rgb: 0, 0, 0;
-    --aiinhbfoop-bg-rgb: 255, 255, 255;
-    --aiinhbfoop-switchbar-bg-color: #f0f1f5;
-    --aiinhbfoop-switchbar-btn-hover-bg-color: #e9e9ef;
-    --aiinhbfoop-switchbar-shadow: 0px 4px 12px 0px rgba(0, 0, 0, .15);
-    --aiinhbfoop-tab-menu-hover-bg-color: rgba(var(--aiinhbfoop-main-color), .1);
-    --aiinhbfoop-tab-menu-hover-text-color: var(--aiinhbfoop-primary-text-color);
-    --aiinhbfoop-tab-menu-active-bg-color: rgba(var(--aiinhbfoop-main-color), .9);
-    --aiinhbfoop-tab-menu-active-orange-bg-color: rgba(224, 124, 13, .9);
-    --aiinhbfoop-tab-menu-disabled-bg-color: rgba(var(--aiinhbfoop-main-color), .2);
-    --aiinhbfoop-tab-menu-active-bg-active-color: rgb(0, 211, 157);
-    --aiinhbfoop-tab-menu-active-text-color: #fff;
-    --aiinhbfoop-loading-color: #fff;
-    --aiinhbfoop-link-color: rgba(var(--aiinhbfoop-main-color), .9);
-    --aiinhbfoop-master-link-color: rgba(var(--aiinhbfoop-master-color), .6);
-    --aiinhbfoop-master-link-hover-color: rgba(var(--aiinhbfoop-master-color), 1);
-    --aiinhbfoop-download-button-bg-color: rgba(255, 255, 255, .5);
-    --aiinhbfoop-loading-bg-color: #f5f5f5;
-    --aiinhbfoop-border-color: rgba(0, 0, 0, .15);
-    --aiinhbfoop-pre-bg: rgba(var(--aiinhbfoop-fg-rgb), .05);
-    --aiinhbfoop-sidebar-bg-color-sub: rgba( 245, 245, 245, var(--aiinhbfoop-bg-opacity) ) !important;
-    --aiinhbfoop-border-spacing-x: 0;
-    --aiinhbfoop-border-spacing-y: 0;
-    --aiinhbfoop-translate-x: 0;
-    --aiinhbfoop-translate-y: 0;
-    --aiinhbfoop-rotate: 0;
-    --aiinhbfoop-skew-x: 0;
-    --aiinhbfoop-skew-y: 0;
-    --aiinhbfoop-scale-x: 1;
-    --aiinhbfoop-scale-y: 1;
-    --aiinhbfoop-pan-x: ;
-    --aiinhbfoop-pan-y: ;
-    --aiinhbfoop-pinch-zoom: ;
-    --aiinhbfoop-scroll-snap-strictness: proximity;
-    --aiinhbfoop-gradient-from-position: ;
-    --aiinhbfoop-gradient-via-position: ;
-    --aiinhbfoop-gradient-to-position: ;
-    --aiinhbfoop-ordinal: ;
-    --aiinhbfoop-slashed-zero: ;
-    --aiinhbfoop-numeric-figure: ;
-    --aiinhbfoop-numeric-spacing: ;
-    --aiinhbfoop-numeric-fraction: ;
-    --aiinhbfoop-ring-inset: ;
-    --aiinhbfoop-ring-offset-width: 0px;
-    --aiinhbfoop-ring-offset-color: #fff;
-    --aiinhbfoop-ring-color: rgba(59, 130, 246, .5);
-    --aiinhbfoop-ring-offset-shadow: 0 0 rgba(0,0,0,0);
-    --aiinhbfoop-ring-shadow: 0 0 rgba(0,0,0,0);
-    --aiinhbfoop-shadow: 0 0 rgba(0,0,0,0);
-    --aiinhbfoop-shadow-colored: 0 0 rgba(0,0,0,0);
-    --aiinhbfoop-blur: ;
-    --aiinhbfoop-brightness: ;
-    --aiinhbfoop-contrast: ;
-    --aiinhbfoop-grayscale: ;
-    --aiinhbfoop-hue-rotate: ;
-    --aiinhbfoop-invert: ;
-    --aiinhbfoop-saturate: ;
-    --aiinhbfoop-sepia: ;
-    --aiinhbfoop-drop-shadow: ;
-    --aiinhbfoop-backdrop-blur: ;
-    --aiinhbfoop-backdrop-brightness: ;
-    --aiinhbfoop-backdrop-contrast: ;
-    --aiinhbfoop-backdrop-grayscale: ;
-    --aiinhbfoop-backdrop-hue-rotate: ;
-    --aiinhbfoop-backdrop-invert: ;
-    --aiinhbfoop-backdrop-opacity: ;
-    --aiinhbfoop-backdrop-saturate: ;
-    --aiinhbfoop-backdrop-sepia: ;
-    --aiinhbfoop-contain-size: ;
-    --aiinhbfoop-contain-layout: ;
-    --aiinhbfoop-contain-paint: ;
-    --aiinhbfoop-contain-style: ;
-    --lt-color-gray-100: #f8f9fc;
-    --lt-color-gray-200: #f1f3f9;
-    --lt-color-gray-300: #dee3ed;
-    --lt-color-gray-400: #c2c9d6;
-    --lt-color-gray-500: #8f96a3;
-    --lt-color-gray-600: #5e636e;
-    --lt-color-gray-700: #2f3237;
-    --lt-color-gray-800: #1d1e20;
-    --lt-color-gray-900: #111213;
-    --lt-shadowDefault: 0 2px 6px -1px rgba(0, 0, 0, 0.16), 0 1px 4px -1px rgba(0, 0, 0, 0.04);
-    --lt-shadowActive: 0 0 8px -2px rgba(0, 0, 0, 0.1), 0 6px 20px -3px rgba(0, 0, 0, 0.2);
-    --lt-color-white: #fff !important;
-    --lt-color-black: #111213 !important;
-    --lt-color-transparent: rgba(255, 255, 255, 0) !important;
-    --lt-color-background-light: var(--lt-color-gray-100) !important;
-    --lt-color-background-default: var(--lt-color-gray-200) !important;
-    --lt-color-background-dark: var(--lt-color-gray-300) !important;
-    --lt-color-border-light: var(--lt-color-gray-200) !important;
-    --lt-color-border-default: var(--lt-color-gray-300) !important;
-    --lt-color-border-dark: var(--lt-color-gray-400) !important;
-    --lt-color-text-very-light: var(--lt-color-gray-500) !important;
-    --lt-color-text-light: var(--lt-color-gray-600) !important;
-    --lt-color-text-default: var(--lt-color-gray-700) !important;
-    --lt-color-text-dark: var(--lt-color-gray-800) !important;
-    --lt-color-overlay-default: #fff !important;
-    --lt-color-overlay-dark: #fff !important;
-    --lt-color-overlay-transparent: rgba(0, 0, 0, 0.1) !important;
-    --lt-shadow-website-overlay: 0 0 7px 0 rgba(0, 0, 0, 0.3) !important;
-    --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
-    --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
-    --fa-font-light: normal 300 1em/1 "Font Awesome 6 Pro";
-    --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Pro";
-    --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
-    --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
-    --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
-    --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
-    --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
-    --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
-    --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 6 Sharp Duotone";
-    --bs-blue: #0d6efd;
-    --bs-indigo: #6610f2;
-    --bs-purple: #6f42c1;
-    --bs-pink: #d63384;
-    --bs-red: #dc3545;
-    --bs-orange: #fd7e14;
-    --bs-yellow: #ffc107;
-    --bs-green: #198754;
-    --bs-teal: #20c997;
-    --bs-cyan: #0dcaf0;
-    --bs-black: #000;
-    --bs-white: #fff;
-    --bs-gray: #6c757d;
-    --bs-gray-dark: #343a40;
-    --bs-gray-100: #f8f9fa;
-    --bs-gray-200: #e9ecef;
-    --bs-gray-300: #dee2e6;
-    --bs-gray-400: #ced4da;
-    --bs-gray-500: #adb5bd;
-    --bs-gray-600: #6c757d;
-    --bs-gray-700: #495057;
-    --bs-gray-800: #343a40;
-    --bs-gray-900: #212529;
-    --bs-primary: darkslateblue;
-    --bs-secondary: mediumaquamarine;
-    --bs-success: #198754;
-    --bs-info: #0dcaf0;
-    --bs-warning: #ffc107;
-    --bs-danger: #dc3545;
-    --bs-light: #f8f9fa;
-    --bs-dark: #212529;
-    --bs-primary-rgb: 72,61,139;
-    --bs-secondary-rgb: 102,205,170;
-    --bs-success-rgb: 25,135,84;
-    --bs-info-rgb: 13,202,240;
-    --bs-warning-rgb: 255,193,7;
-    --bs-danger-rgb: 220,53,69;
-    --bs-light-rgb: 248,249,250;
-    --bs-dark-rgb: 33,37,41;
-    --bs-primary-text-emphasis: rgb(28.8, 24.4, 55.6);
-    --bs-secondary-text-emphasis: rgb(40.8, 82, 68);
-    --bs-success-text-emphasis: rgb(10, 54, 33.6);
-    --bs-info-text-emphasis: rgb(5.2, 80.8, 96);
-    --bs-warning-text-emphasis: rgb(102, 77.2, 2.8);
-    --bs-danger-text-emphasis: rgb(88, 21.2, 27.6);
-    --bs-light-text-emphasis: #495057;
-    --bs-dark-text-emphasis: #495057;
-    --bs-primary-bg-subtle: rgb(218.4, 216.2, 231.8);
-    --bs-secondary-bg-subtle: rgb(224.4, 245, 238);
-    --bs-success-bg-subtle: rgb(209, 231, 220.8);
-    --bs-info-bg-subtle: rgb(206.6, 244.4, 252);
-    --bs-warning-bg-subtle: rgb(255, 242.6, 205.4);
-    --bs-danger-bg-subtle: rgb(248, 214.6, 217.8);
-    --bs-light-bg-subtle: rgb(251.5, 252, 252.5);
-    --bs-dark-bg-subtle: #ced4da;
-    --bs-primary-border-subtle: rgb(181.8, 177.4, 208.6);
-    --bs-secondary-border-subtle: rgb(193.8, 235, 221);
-    --bs-success-border-subtle: rgb(163, 207, 186.6);
-    --bs-info-border-subtle: rgb(158.2, 233.8, 249);
-    --bs-warning-border-subtle: rgb(255, 230.2, 155.8);
-    --bs-danger-border-subtle: rgb(241, 174.2, 180.6);
-    --bs-light-border-subtle: #e9ecef;
-    --bs-dark-border-subtle: #adb5bd;
-    --bs-white-rgb: 255,255,255;
-    --bs-black-rgb: 0,0,0;
-    --bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    --bs-font-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-    --bs-body-font-family: var(--bs-font-sans-serif);
-    --bs-body-font-size: 1rem;
-    --bs-body-font-weight: 400;
-    --bs-body-line-height: 1.5;
-    --bs-body-color: #212529;
-    --bs-body-color-rgb: 33,37,41;
-    --bs-body-bg: #fff;
-    --bs-body-bg-rgb: 255,255,255;
-    --bs-emphasis-color: #000;
-    --bs-emphasis-color-rgb: 0,0,0;
-    --bs-secondary-color: rgba(33, 37, 41, 0.75);
-    --bs-secondary-color-rgb: 33,37,41;
-    --bs-secondary-bg: #e9ecef;
-    --bs-secondary-bg-rgb: 233,236,239;
-    --bs-tertiary-color: rgba(33, 37, 41, 0.5);
-    --bs-tertiary-color-rgb: 33,37,41;
-    --bs-tertiary-bg: #f8f9fa;
-    --bs-tertiary-bg-rgb: 248,249,250;
-    --bs-heading-color: inherit;
-    --bs-link-color: darkslateblue;
-    --bs-link-color-rgb: 72,61,139;
-    --bs-link-decoration: underline;
-    --bs-link-hover-color: rgb(57.6, 48.8, 111.2);
-    --bs-link-hover-color-rgb: 58,49,111;
-    --bs-code-color: #d63384;
-    --bs-highlight-color: #212529;
-    --bs-highlight-bg: rgb(255, 242.6, 205.4);
-    --bs-border-width: 1px;
-    --bs-border-style: solid;
-    --bs-border-color: #dee2e6;
-    --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
-    --bs-border-radius: 0.375rem;
-    --bs-border-radius-sm: 0.25rem;
-    --bs-border-radius-lg: 0.5rem;
-    --bs-border-radius-xl: 1rem;
-    --bs-border-radius-xxl: 2rem;
-    --bs-border-radius-2xl: var(--bs-border-radius-xxl);
-    --bs-border-radius-pill: 50rem;
-    --bs-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    --bs-box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    --bs-box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
-    --bs-box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
-    --bs-focus-ring-width: 0.25rem;
-    --bs-focus-ring-opacity: 0.25;
-    --bs-focus-ring-color: rgba(72, 61, 139, 0.25);
-    --bs-form-valid-color: #198754;
-    --bs-form-valid-border-color: #198754;
-    --bs-form-invalid-color: #dc3545;
-    --bs-form-invalid-border-color: #dc3545;
-    --bs-breakpoint-xs: 0;
-    --bs-breakpoint-sm: 576px;
-    --bs-breakpoint-md: 768px;
-    --bs-breakpoint-lg: 992px;
-    --bs-breakpoint-xl: 1200px;
-    --bs-breakpoint-xxl: 1400px;
-    --aiinhbfoop-main-color: 0, 102, 255;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  /* granate superior (barra) - mantenemos el valor anterior */
+  --gov-maroon: 92, 21, 48;
+  --gov-maroon-hex: #5C1530;
+
+  /* dorado SIGED solicitado (override): #A57F2C */
+  --gov-gold: 165, 127, 44;
+  --gov-gold-hex: #A57F2C;
+
+  /* crema héroe */
+  --hero-cream: 251, 243, 232;
+  --hero-cream-hex: #FBF3E8;
+
+  /* fuerza de texto en barras */
+  --header-text-color: #ffffff;
 }
 
-/* -----------------------------
-   Paleta SIGED: overrides
-   (colores extraídos de la captura)
-   - granate: #5C1530 -> rgb(92,21,48)
-   - dorado:  #B28A2A -> rgb(178,138,42)
-   - crema:   #FBF3E8 -> rgb(251,243,232)
-   ----------------------------- */
-:root{
-    --gov-maroon: 92, 21, 48;
-    --gov-maroon-hex: #5C1530;
-    --gov-gold: 178, 138, 42;
-    --gov-gold-hex: #B28A2A;
-    --hero-cream: 251, 243, 232;
-    --hero-cream-hex: #FBF3E8;
-
-    /* mantener compatibilidad con variables ya usadas por componentes */
-    --aiinhbfoop-main-color: var(--gov-maroon);
-    --aiinhbfoop-master-color: var(--gov-gold);
-    --aiinhbfoop-fg-rgb: 255,255,255; /* por defecto texto blanco sobre barras */
-}
-
-/* -----------------------------
-   Global reset & layout
-   ----------------------------- */
-* { box-sizing: inherit; }
-html { box-sizing: border-box; font-size: 10px; -webkit-text-size-adjust: 100%; }
+/* --- Reset / layout mínimo --- */
+*{ box-sizing: border-box; }
+html{ font-size: 10px; }
 body{
   margin:0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: rgb(240,242,245); /* coincide con --aiinhbfoop-html-bg-color */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  background: rgb(240,242,245);
   color: #111213;
   -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
 }
 
 /* Container */
-.container{
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+.container{ max-width:1100px; margin:0 auto; padding:0 20px; }
 
-/* -----------------------------
-   Header / barras (SIGED look)
-   ----------------------------- */
+/* --- Header / barras --- */
 .site-header .topbar{
-  background: rgb(var(--gov-maroon));
-  color:#fff;
+  background: rgb(var(--gov-maroon)) !important;
+  color: var(--header-text-color) !important;
   padding: 10px 0;
 }
-.topbar-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.seal{
-  font-weight:700;
-  letter-spacing:0.2px;
-  color:#fff;
-}
-.top-actions a{ color:#fff; text-decoration:none; margin-left:16px; font-size:1.05rem;}
-.top-actions .search{ background:transparent; border:none; color:#fff; font-size:1rem; margin-left:8px; cursor:pointer; }
+.topbar-inner{ display:flex; align-items:center; justify-content:space-between; }
 
-/* Gold navigation bar */
+/* Gold navigation bar (ahora con el dorado exacto solicitado) */
 .goldbar{
-  background: rgb(var(--gov-gold));
-  color: #fff;
+  background: rgb(var(--gov-gold)) !important;
+  color: var(--header-text-color) !important;
   font-weight:600;
 }
 .goldbar .container{ display:flex; align-items:center; justify-content:space-between; padding:10px 0; }
-.brand{ font-weight:800; color:#fff; }
-.nav{ list-style:none; margin:0; padding:0; display:flex; gap:18px; }
-.nav li a{ color:#fff; text-decoration:none; font-weight:600; font-size:0.95rem; }
 
-/* Hero/banner with cream background */
+/* --- Brand (SIGED) --- */
+/* Se recomienda que en index.html la marca sea un enlace:
+   <a class="brand" href="https://siged.sep.gob.mx/SIGED/">SIGED</a>
+*/
+.brand,
+.brand a {
+  display: inline-block;
+  background: var(--gov-gold-hex);           /* color dorado (hex) para consistencia */
+  color: var(--header-text-color) !important;/* texto blanco */
+  font-family: "Noto Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 20.8px;                          /* valor pedido ~20.8px */
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  line-height: 1;
+  box-shadow: none;
+}
+
+/* Si quieres que la marca esté pegada a la izquierda y destaque, puedes usar: */
+.goldbar .brand { margin-right: 18px; }
+
+/* Navegación */
+.nav{ list-style:none; margin:0; padding:0; display:flex; gap:18px; }
+.nav li a{ color: var(--header-text-color) !important; text-decoration:none; font-weight:600; font-size:0.95rem; }
+
+/* Hero/banner con fondo crema */
 .hero{
-  background: linear-gradient(0deg, rgb(var(--hero-cream)), rgb(var(--hero-cream)));
+  background: linear-gradient(0deg, rgb(var(--hero-cream)), rgb(var(--hero-cream))) !important;
   padding: 42px 0 36px 0;
   border-bottom: 4px solid rgba(0,0,0,0.02);
 }
-.hero-inner h1{ margin:0; font-size:1.15rem; color: #6b6b6b; font-weight:600; }
-.hero-inner h2{ margin:8px 0 0 0; font-size:2rem; color: #111213; font-weight:700; }
+.hero-inner h1{ margin:0; font-size:1.15rem; color:#6b6b6b; font-weight:600; }
+.hero-inner h2{ margin:8px 0 0 0; font-size:2rem; color:#111213; font-weight:700; }
 
-/* -----------------------------
-   Card / content
-   ----------------------------- */
+/* Card / content */
 .card{
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  padding: 20px;
-  margin: 24px auto;
-  max-width: 900px;
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  padding:20px;
+  margin:24px auto;
+  max-width:900px;
 }
 .row{ display:flex; flex-wrap:wrap; gap:12px; }
 .col{ flex:1 1 240px; min-width:200px; }
 label{ font-weight:700; display:block; margin-bottom:6px; color:#333; }
 .value{ background:#f4f4f4; padding:10px; border-radius:4px; color:#111213; }
 
-/* small UI tweaks */
-.img_resp { width:50px; height:auto; display:block; margin-bottom:8px; }
-
-/* -----------------------------
-   Overrides for specificity (to beat frameworks / theme defaults)
-   - These use increased specificity and !important where needed.
-   - Place these at the end of the file so they win cascade.
-   ----------------------------- */
-
-/* Target header elements with high specificity */
+/* --- Overrides adicionales para ganar especificidad si hay frameworks --- */
 header.site-header .topbar,
-header.site-header .topbar .topbar-inner,
 header.site-header .topbar * {
   background: rgb(var(--gov-maroon)) !important;
-  color: #fff !important;
+  color: var(--header-text-color) !important;
 }
 
-/* Gold nav */
 header.site-header .goldbar,
 header.site-header .goldbar * {
   background: rgb(var(--gov-gold)) !important;
-  color: #fff !important;
+  color: var(--header-text-color) !important;
 }
 
-/* Hero */
-header.site-header .hero,
-header.site-header .hero * {
-  background: rgb(var(--hero-cream)) !important;
-  color: #111213 !important;
-}
-
-/* Card visuals */
-.card, .card * {
-  background: #fff !important;
-  color: #111213 !important;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08) !important;
-}
-
-/* Ensure topbar links and brand are white */
-header.site-header .topbar .top-actions a,
-header.site-header .topbar .seal,
+/* Forzar la marca (por si la marca está dentro de otros elementos con reglas más específicas) */
 header.site-header .goldbar .brand,
-header.site-header .goldbar .nav li a {
-  color: #fff !important;
+header.site-header .goldbar a.brand {
+  background: var(--gov-gold-hex) !important;
+  color: var(--header-text-color) !important;
+  font-size: 20.8px !important;
+  font-family: "Noto Sans", sans-serif !important;
+  text-decoration: none !important;
 }
 
-/* If some framework uses more specific selectors, increase specificity */
-body header.site-header.topbar, body header.site-header.goldbar, body header.site-header.hero {}
-
-/* Final explicit overrides (from your snippet) */
-.site-header .topbar {
-  background: #5C1530 !important; /* granate */
-  color: #fff !important;
-  border-radius: 6px !important;
-}
-
-.goldbar {
-  background: #B28A2A !important; /* dorado */
-  color: #fff !important;
-}
-
-.hero {
-  background: #FBF3E8 !important; /* crema */
-  color: #111 !important;
-}
-
-/* tickets: estilos del "card" y contenido */
-.card {
-  background: #fff !important;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08) !important;
-}
-
-/* Forzar texto blanco en topbar links */
+/* Asegurar links en topbar sean blancos */
 .top-actions a, .seal, .brand, .nav li a {
-  color: #fff !important;
+  color: var(--header-text-color) !important;
 }
 
-/* Aumentar especificidad en caso de frameworks */
-header.site-header .topbar,
-header.site-header .goldbar,
-header.site-header .hero {
-  background-clip: padding-box !important;
-}
-
-/* -----------------------------
-   Debug helpers (comentadas por defecto)
-   - Descomenta para ver si tus reglas se aplican
-   ----------------------------- */
-/* Outline every element faintly to debug specificity problems */
-/* * { outline: 1px solid rgba(255,0,0,0.03) !important; } */
-
-/* -----------------------------
-   Responsive tweaks
-   ----------------------------- */
+/* Responsive */
 @media (max-width:720px){
   .nav{ display:none; }
   .hero-inner h2{ font-size:1.4rem; }
-  .topbar-inner, .goldbar .container{ padding-left: 12px; padding-right:12px; }
+  .topbar-inner, .goldbar .container{ padding-left:12px; padding-right:12px; }
 }
