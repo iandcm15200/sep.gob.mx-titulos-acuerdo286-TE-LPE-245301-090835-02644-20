@@ -1,12 +1,14 @@
 /* ------------------------------------------------------------------
-   Combined stylesheet
-   - Incluye tus variables base (pegadas dentro de :root)
-   - Sobrescribe las variables de color para usar la paleta SIGED
-   - Añade estilos del header/hero/card usados en la réplica
+   styles.css - versión completa y consolidada
+   - Contiene tus variables base (pegadas dentro de :root)
+   - Sobrescribe las variables para usar la paleta SIGED (granate/dorado/crema)
+   - Incluye reglas con mayor especificidad y !important al final
    Reemplaza el styles.css actual por este archivo.
    ------------------------------------------------------------------*/
 
-/* ----- User-provided base variables and base declarations ----- */
+/* -----------------------------
+   Base: variables y resets (user-provided)
+   ----------------------------- */
 :root{
     line-height: 1.5;
     tab-size: 4;
@@ -285,36 +287,37 @@
     box-sizing: border-box;
 }
 
-/* ----- Paleta SIGED: sobrescribo las variables relevantes ----- */
-/* Colores extraídos de tu captura:
-   - granate (barra superior): #5C1530 -> rgb(92,21,48)
-   - dorado (banda): #B28A2A -> rgb(178,138,42)
-   - crema (fondo héroe): #FBF3E8 -> rgb(251,243,232)
-*/
+/* -----------------------------
+   Paleta SIGED: overrides
+   (colores extraídos de la captura)
+   - granate: #5C1530 -> rgb(92,21,48)
+   - dorado:  #B28A2A -> rgb(178,138,42)
+   - crema:   #FBF3E8 -> rgb(251,243,232)
+   ----------------------------- */
 :root{
-    /* Gobierno / SIGED palette overrides */
-    --gov-maroon: 92, 21, 48;   /* rgb(...) */
+    --gov-maroon: 92, 21, 48;
     --gov-maroon-hex: #5C1530;
     --gov-gold: 178, 138, 42;
     --gov-gold-hex: #B28A2A;
-    --hero-cream: 251, 243, 232; /* rgb(...) */
+    --hero-cream: 251, 243, 232;
     --hero-cream-hex: #FBF3E8;
 
-    /* Integración con variables existentes (para que componentes que usan
-       --aiinhbfoop-main-color / master-color se adapten) */
+    /* mantener compatibilidad con variables ya usadas por componentes */
     --aiinhbfoop-main-color: var(--gov-maroon);
     --aiinhbfoop-master-color: var(--gov-gold);
-    --aiinhbfoop-fg-rgb: 255, 255, 255; /* texto blanco sobre barras oscuras por defecto */
+    --aiinhbfoop-fg-rgb: 255,255,255; /* por defecto texto blanco sobre barras */
 }
 
-/* ----- Global reset and layout ----- */
+/* -----------------------------
+   Global reset & layout
+   ----------------------------- */
 * { box-sizing: inherit; }
 html { box-sizing: border-box; font-size: 10px; -webkit-text-size-adjust: 100%; }
 body{
   margin:0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: rgb(240,242,245); /* matches --aiinhbfoop-html-bg-color */
-  color: rgba(var(--aiinhbfoop-fg-rgb), 1); /* default text color uses fg-rgb */
+  background: rgb(240,242,245); /* coincide con --aiinhbfoop-html-bg-color */
+  color: #111213;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
@@ -326,23 +329,25 @@ body{
   padding: 0 20px;
 }
 
-/* ----- Header / barras (SIGED look) ----- */
+/* -----------------------------
+   Header / barras (SIGED look)
+   ----------------------------- */
 .site-header .topbar{
-  background: rgb(var(--gov-maroon)); /* uses rgb var */
+  background: rgb(var(--gov-maroon));
   color:#fff;
+  padding: 10px 0;
 }
 .topbar-inner{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:10px 0;
 }
 .seal{
   font-weight:700;
   letter-spacing:0.2px;
   color:#fff;
 }
-.top-actions a{ color:#fff; text-decoration:none; margin-left:16px; font-size:0.95rem;}
+.top-actions a{ color:#fff; text-decoration:none; margin-left:16px; font-size:1.05rem;}
 .top-actions .search{ background:transparent; border:none; color:#fff; font-size:1rem; margin-left:8px; cursor:pointer; }
 
 /* Gold navigation bar */
@@ -365,7 +370,9 @@ body{
 .hero-inner h1{ margin:0; font-size:1.15rem; color: #6b6b6b; font-weight:600; }
 .hero-inner h2{ margin:8px 0 0 0; font-size:2rem; color: #111213; font-weight:700; }
 
-/* ----- Card / content ----- */
+/* -----------------------------
+   Card / content
+   ----------------------------- */
 .card{
   background: #fff;
   border-radius: 8px;
@@ -382,7 +389,97 @@ label{ font-weight:700; display:block; margin-bottom:6px; color:#333; }
 /* small UI tweaks */
 .img_resp { width:50px; height:auto; display:block; margin-bottom:8px; }
 
-/* Responsive */
+/* -----------------------------
+   Overrides for specificity (to beat frameworks / theme defaults)
+   - These use increased specificity and !important where needed.
+   - Place these at the end of the file so they win cascade.
+   ----------------------------- */
+
+/* Target header elements with high specificity */
+header.site-header .topbar,
+header.site-header .topbar .topbar-inner,
+header.site-header .topbar * {
+  background: rgb(var(--gov-maroon)) !important;
+  color: #fff !important;
+}
+
+/* Gold nav */
+header.site-header .goldbar,
+header.site-header .goldbar * {
+  background: rgb(var(--gov-gold)) !important;
+  color: #fff !important;
+}
+
+/* Hero */
+header.site-header .hero,
+header.site-header .hero * {
+  background: rgb(var(--hero-cream)) !important;
+  color: #111213 !important;
+}
+
+/* Card visuals */
+.card, .card * {
+  background: #fff !important;
+  color: #111213 !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08) !important;
+}
+
+/* Ensure topbar links and brand are white */
+header.site-header .topbar .top-actions a,
+header.site-header .topbar .seal,
+header.site-header .goldbar .brand,
+header.site-header .goldbar .nav li a {
+  color: #fff !important;
+}
+
+/* If some framework uses more specific selectors, increase specificity */
+body header.site-header.topbar, body header.site-header.goldbar, body header.site-header.hero {}
+
+/* Final explicit overrides (from your snippet) */
+.site-header .topbar {
+  background: #5C1530 !important; /* granate */
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+
+.goldbar {
+  background: #B28A2A !important; /* dorado */
+  color: #fff !important;
+}
+
+.hero {
+  background: #FBF3E8 !important; /* crema */
+  color: #111 !important;
+}
+
+/* tickets: estilos del "card" y contenido */
+.card {
+  background: #fff !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08) !important;
+}
+
+/* Forzar texto blanco en topbar links */
+.top-actions a, .seal, .brand, .nav li a {
+  color: #fff !important;
+}
+
+/* Aumentar especificidad en caso de frameworks */
+header.site-header .topbar,
+header.site-header .goldbar,
+header.site-header .hero {
+  background-clip: padding-box !important;
+}
+
+/* -----------------------------
+   Debug helpers (comentadas por defecto)
+   - Descomenta para ver si tus reglas se aplican
+   ----------------------------- */
+/* Outline every element faintly to debug specificity problems */
+/* * { outline: 1px solid rgba(255,0,0,0.03) !important; } */
+
+/* -----------------------------
+   Responsive tweaks
+   ----------------------------- */
 @media (max-width:720px){
   .nav{ display:none; }
   .hero-inner h2{ font-size:1.4rem; }
