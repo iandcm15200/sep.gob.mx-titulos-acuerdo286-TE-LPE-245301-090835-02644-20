@@ -1,0 +1,42 @@
+/* ------------------------------------------------------------------
+  Snippet solicitado (styles-overrides.css lines 2-39)
+  (Se muestra tal cual, como pediste)
+------------------------------------------------------------------ */
+.site-header .topbar {
+  background: #5C1530 !important; /* granate */
+  color: #fff !important;
+  border-radius: 6px !important;
+}
+
+.goldbar {
+  background: #B28A2A !important; /* dorado */
+  color: #fff !important;
+}
+
+.hero {
+  background: #FBF3E8 !important; /* crema */
+  color: #111 !important;
+}
+
+/* tickets: estilos del "card" y contenido */
+.card {
+  background: #fff !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08) !important;
+}
+
+/* Forzar texto blanco en topbar links */
+.top-actions a, .seal, .brand, .nav li a {
+  color: #fff !important;
+}
+
+/* Aumentar especificidad en caso de frameworks */
+header.site-header .topbar,
+header.site-header .goldbar,
+header.site-header .hero {
+  background-clip: padding-box !important;
+}
+
+/* Si aún hay reglas que anulan, puedes usar esta regla temporal de depuración:
+   descomentar la siguiente línea para ver si tus estilos aplican al final.
+*/
+/* * { outline: 1px solid rgba(255,0,0,0.06) !important; } */
