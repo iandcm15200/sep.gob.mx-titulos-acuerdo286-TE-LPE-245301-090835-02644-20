@@ -8,12 +8,11 @@
   <!-- Tu CSS principal -->
   <link rel="stylesheet" href="./styles.css?v=20251030">
 
-  <!-- Estilos pequeños aquí para forzar visibilidad del logo sin tocar tu styles.css -->
+  <!-- Reglas pequeñas para forzar que el logo se muestre y proporcionar fallback de texto si falla -->
   <style>
-    /* Asegura que la barra dorada y la disposición del header funcionen bien */
     .topbar .container, .goldbar .container { display:flex; align-items:center; justify-content:space-between; }
 
-    /* Protección y tamaño del sello gubernamental */
+    /* Sello gubernamental (protegido) */
     #gov-seal {
       height: 34px !important;
       display: inline-block !important;
@@ -22,7 +21,7 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Logo SIGED: forzamos que se muestre (si tu styles.css lo ocultó) */
+    /* Imagen del logo SIGED */
     .brand-logo {
       display: inline-block !important;
       height: 40px !important;
@@ -32,17 +31,30 @@
       margin-right: 12px !important;
     }
 
-    /* Asegura que el texto fallback no aparezca si prefieres la imagen */
-    .brand.brand-text { display: none !important; }
+    /* Texto de respaldo: oculto por defecto, se mostrará si la imagen falla */
+    .brand-fallback {
+      display: none;
+      color: #fff;
+      font-family: 'Merriweather', Georgia, serif;
+      font-weight: 900;
+      font-size: 34px;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      vertical-align: middle;
+      margin-left: 0.5rem;
+    }
 
-    /* Z-index y background para evitar solapamientos */
-    .topbar { background: #6b1f2a; z-index: 30; position: relative; }
-    .goldbar { background: #b1882f; z-index: 20; position: relative; }
+    /* Si por alguna razón tu CSS global oculta .brand-logo, aumenta especificidad */
+    .goldbar .container .brand-logo { display:inline-block !important; }
 
-    /* Responsive pequeño */
-    @media (max-width: 480px) {
+    /* Mantén la barra con el color dorado */
+    .goldbar { background: #b1882f; }
+
+    /* Responsive */
+    @media (max-width:480px) {
       .brand-logo { height: 32px !important; }
       #gov-seal { height: 28px !important; }
+      .brand-fallback { font-size: 22px; }
     }
   </style>
 </head>
@@ -52,7 +64,6 @@
     <div class="topbar">
       <div class="container topbar-inner">
         <div style="display:flex; align-items:center;">
-          <!-- Sello gubernamental (archivo: gobierno_mexico.png) -->
           <img id="gov-seal" src="gobierno_mexico.png" alt="Gobierno de México">
         </div>
 
@@ -67,21 +78,23 @@
     <!-- Barra dorada principal -->
     <div class="goldbar" role="navigation" aria-label="Barra principal">
       <div class="container">
-        <!-- Marca: imagen del logo SIGED (SVG preferido). 
-             onerror intenta alternativas si el nombre real del archivo es distinto
-             (p.ej. logo_blanco.svg.png o logo_blanco.png). -->
-        <a class="brand" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED">
+        <!-- Link de marca: img + fallback textual.
+             IMPORTANTE: uso el nombre exacto que aparece en tu repo ("logo_blanco.svg.png").
+             Si el archivo se llama distinto cámbialo aquí (o renómbralo en el repo). -->
+        <a class="brand" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED" style="display:flex; align-items:center;">
           <img
+            id="brand-img"
             class="brand-logo"
-            src="logo_blanco.svg"
+            src="logo_blanco.svg.png"
             alt="SIGED"
             onerror="
-              // si falla logo_blanco.svg, intenta logo_blanco.svg.png, luego logo_blanco.png
-              if(this._tries === undefined) this._tries = 0;
-              this._tries++;
-              if(this._tries === 1){ this.src = 'logo_blanco.svg.png'; }
-              else if(this._tries === 2){ this.src = 'logo_blanco.png'; }
-              else { this.style.display = 'none'; }">
+              // Si la imagen no carga: ocultarla y mostrar el texto fallback
+              this.style.display='none';
+              var f = document.getElementById('brand-fallback');
+              if(f) f.style.display='inline-block';
+            ">
+          <!-- Texto fallback: se mostrará sólo si la imagen falla (gracias al onerror anterior) -->
+          <span id="brand-fallback" class="brand-fallback" aria-hidden="false">SIGED</span>
         </a>
 
         <ul class="nav" role="menubar" aria-label="Menú principal" style="display:flex; gap:12px; list-style:none; margin:0; padding:0;">
@@ -97,7 +110,7 @@
   </header>
 
   <main class="container" role="main">
-    <!-- Tu contenido aquí -->
+    <!-- ... contenido ... -->
   </main>
 </body>
 </html>
