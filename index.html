@@ -8,9 +8,6 @@
   <!-- Tu CSS principal -->
   <link rel="stylesheet" href="./styles.css?v=20251030">
 
-  <!-- Fuente para el texto SIGED -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-
   <style>
     /* Reset básico */
     * {
@@ -31,111 +28,46 @@
       padding: 0 20px;
     }
 
-    /* Barra superior guinda */
+    /* Barra superior guinda como imagen - SIN MÁRGENES */
     .topbar {
-      background-color: #8b1538 !important;
-      padding: 20px 0 !important;
-      min-height: 85px !important;
+      width: 100%;
+      background-color: #8b1538;
+      position: relative;
+      height: 85px;
+      overflow: hidden;
+      margin: 0 !important;
+      padding: 0 !important;
     }
 
-    .topbar-inner {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
+    .topbar img {
+      width: 100%;
+      height: 85px;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      margin: 0 !important;
+      padding: 0 !important;
     }
 
-    /* Sello gubernamental */
-    #gov-seal {
-      height: 50px !important;
-      width: auto !important;
-      display: inline-block !important;
-      vertical-align: middle !important;
-      margin-right: 12px !important;
-      image-rendering: -webkit-optimize-contrast;
-    }
-
-    /* Enlaces de la barra superior */
-    .top-actions {
-      display: flex !important;
-      gap: 24px !important;
-      align-items: center !important;
-    }
-
-    .top-actions a,
-    .top-actions button {
-      color: #ffffff !important;
-      text-decoration: none !important;
-      font-size: 0.95rem !important;
-      font-weight: 400 !important;
-    }
-
-    .top-actions a:hover {
-      text-decoration: underline !important;
-    }
-
-    .top-actions button {
-      background: none !important;
-      border: none !important;
-      cursor: pointer !important;
-      font-size: 1.1rem !important;
-      padding: 4px 8px !important;
-    }
-
-    /* Barra dorada - MÁS PEQUEÑA */
+    /* Barra dorada como imagen - SIN MÁRGENES */
     .goldbar {
-      background-color: #b8952c !important;
-      padding: 8px 0 !important;
-      min-height: 42px !important;
-    }
-
-    .goldbar .container {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      height: 100%;
-    }
-
-    /* Texto SIGED */
-    .brand-text {
-      color: #ffffff !important;
-      font-family: 'Montserrat', Arial, sans-serif !important;
-      font-weight: 700 !important;
-      font-size: 20px !important;
-      letter-spacing: 0.5px !important;
-      text-transform: uppercase !important;
-      text-decoration: none !important;
-      display: inline-block !important;
-      line-height: 1 !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      vertical-align: middle !important;
-    }
-
-    .brand-text:hover {
-      color: #ffffff !important;
-      text-decoration: none !important;
-    }
-
-    /* Estilos para el menú de la barra dorada */
-    .nav {
-      display: flex !important;
-      gap: 16px !important;
-      list-style: none !important;
+      width: 100%;
+      background-color: #b8952c;
+      position: relative;
+      height: 42px;
+      overflow: hidden;
       margin: 0 !important;
       padding: 0 !important;
-      align-items: center !important;
     }
 
-    .nav a {
-      color: #ffffff !important;
-      text-decoration: none !important;
-      font-size: 0.85rem !important;
-      font-weight: 500 !important;
-      white-space: nowrap !important;
-    }
-
-    .nav a:hover {
-      text-decoration: underline !important;
+    .goldbar img {
+      width: 100%;
+      height: 42px;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      margin: 0 !important;
+      padding: 0 !important;
     }
 
     /* Ajustar el hero */
@@ -206,30 +138,19 @@
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .topbar {
-        padding: 16px 0 !important;
-        min-height: 75px !important;
+        height: 75px;
       }
       
-      #gov-seal { 
-        height: 42px !important;
-      }
-      
-      .brand-text { 
-        font-size: 18px !important;
+      .topbar img {
+        height: 75px;
       }
 
       .goldbar {
-        padding: 6px 0 !important;
-        min-height: 40px !important;
+        height: 40px;
       }
       
-      .nav {
-        flex-wrap: wrap !important;
-        gap: 10px !important;
-      }
-      
-      .nav a {
-        font-size: 0.8rem !important;
+      .goldbar img {
+        height: 40px;
       }
 
       .row {
@@ -239,39 +160,19 @@
 
     @media (max-width: 480px) {
       .topbar {
-        padding: 14px 0 !important;
-        min-height: 65px !important;
+        height: 65px;
       }
       
-      #gov-seal { 
-        height: 36px !important;
-        margin-right: 8px !important; 
-      }
-      
-      .brand-text { 
-        font-size: 16px !important;
+      .topbar img {
+        height: 65px;
       }
       
       .goldbar {
-        padding: 5px 0 !important;
-        min-height: 38px !important;
+        height: 38px;
       }
-
-      .top-actions {
-        gap: 12px !important;
-      }
-
-      .top-actions a,
-      .top-actions button {
-        font-size: 0.85rem !important;
-      }
-
-      .nav {
-        gap: 8px !important;
-      }
-
-      .nav a {
-        font-size: 0.72rem !important;
+      
+      .goldbar img {
+        height: 38px;
       }
     }
   </style>
@@ -280,39 +181,14 @@
 </head>
 <body>
   <header class="site-header" role="banner">
-    <!-- Barra superior guinda -->
+    <!-- Barra superior guinda (IMAGEN COMPLETA) -->
     <div class="topbar">
-      <div class="container topbar-inner">
-        <!-- Sello del Gobierno -->
-        <div style="display:flex; align-items:center;">
-          <img id="gov-seal" src="gobierno_mexico.png" alt="Gobierno de México" />
-        </div>
-
-        <nav class="top-actions" aria-label="Acciones">
-          <a href="#">Trámites</a>
-          <a href="#">Gobierno</a>
-          <button aria-label="Buscar" class="search">🔍</button>
-        </nav>
-      </div>
+      <img src="barra_guinda.png" alt="Gobierno de México - Trámites y Gobierno" />
     </div>
 
-    <!-- Barra dorada -->
-    <div class="goldbar" role="navigation" aria-label="Barra principal">
-      <div class="container">
-        <!-- Texto SIGED -->
-        <a class="brand-text" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED">
-          SIGED
-        </a>
-
-        <ul class="nav" role="menubar" aria-label="Menú principal">
-          <li role="none"><a role="menuitem" href="#">¿Quiénes somos?</a></li>
-          <li role="none"><a role="menuitem" href="#">Consultas</a></li>
-          <li role="none"><a role="menuitem" href="#">Estadística Educativa</a></li>
-          <li role="none"><a role="menuitem" href="#">Indicadores Educativos</a></li>
-          <li role="none"><a role="menuitem" href="#">Datos abiertos</a></li>
-          <li role="none"><a role="menuitem" href="#">Aviso de Privacidad</a></li>
-        </ul>
-      </div>
+    <!-- Barra dorada (IMAGEN COMPLETA) -->
+    <div class="goldbar">
+      <img src="barra_dorada.png" alt="SIGED - Menú de navegación" />
     </div>
 
     <div class="hero" role="region" aria-label="Encabezado">
