@@ -9,29 +9,43 @@
   <link rel="stylesheet" href="./styles.css?v=20251030">
 
   <style>
-    /* Forzar color dorado en la barra principal */
-    .goldbar {
-      background-color: #b1882f !important;
+    /* Ajustar la barra superior (guinda) más grande */
+    .topbar {
+      background-color: #8b1538 !important;
+      padding: 16px 0 !important; /* Más padding para hacerla más grande */
+      min-height: 70px !important;
     }
 
-    /* Blindaje y ajuste del sello gubernamental */
-    #gov-seal,
-    .topbar .seal img {
-      height: 34px !important;
+    .topbar-inner {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+
+    /* Barra dorada más pequeña */
+    .goldbar {
+      background-color: #b1882f !important;
+      padding: 8px 0 !important; /* Menos padding para hacerla más pequeña */
+      min-height: 50px !important;
+    }
+
+    /* Sello gubernamental más grande */
+    #gov-seal {
+      height: 48px !important; /* Más grande */
       display: inline-block !important;
       vertical-align: middle !important;
       margin-right: 12px !important;
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Estilos para el logo SIGED como imagen */
+    /* Logo SIGED más pequeño */
     .brand-logo {
       display: inline-block !important;
-      height: 40px !important; /* Ajusta según necesites */
+      height: 32px !important; /* Más pequeño */
       width: auto !important;
       vertical-align: middle !important;
       margin: 0 !important;
-      padding: 8px 0 !important;
+      padding: 0 !important;
       image-rendering: -webkit-optimize-contrast;
     }
 
@@ -41,20 +55,110 @@
       display: block !important;
     }
 
-    /* Ocultar el texto si decides dejarlo como fallback */
-    .brand-text { 
-      display: none !important; 
+    /* Estilos para los enlaces de la barra superior */
+    .top-actions {
+      display: flex !important;
+      gap: 20px !important;
+      align-items: center !important;
+    }
+
+    .top-actions a,
+    .top-actions button {
+      color: #ffffff !important;
+      text-decoration: none !important;
+      font-size: 0.95rem !important;
+      font-weight: 400 !important;
+    }
+
+    .top-actions button {
+      background: none !important;
+      border: none !important;
+      cursor: pointer !important;
+    }
+
+    /* Estilos para el menú de la barra dorada */
+    .nav {
+      display: flex !important;
+      gap: 16px !important;
+      list-style: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      align-items: center !important;
+    }
+
+    .nav a {
+      color: #ffffff !important;
+      text-decoration: none !important;
+      font-size: 0.9rem !important;
+      font-weight: 500 !important;
+      white-space: nowrap !important;
+    }
+
+    .nav a:hover {
+      text-decoration: underline !important;
+    }
+
+    /* Ajustar el hero */
+    .hero {
+      background-color: #f5f5f5 !important;
+      padding: 40px 0 !important;
+    }
+
+    .hero h1 {
+      font-size: 1.8rem !important;
+      margin-bottom: 8px !important;
+      color: #333 !important;
+    }
+
+    .hero h2 {
+      font-size: 1.3rem !important;
+      font-weight: 400 !important;
+      color: #333 !important;
     }
 
     /* Responsive adjustments */
-    @media (max-width: 480px) {
-      .brand-logo { 
-        height: 32px !important; 
-        padding: 6px 0 !important;
+    @media (max-width: 768px) {
+      .topbar {
+        padding: 12px 0 !important;
+        min-height: 60px !important;
       }
+      
       #gov-seal { 
-        height: 28px !important; 
+        height: 38px !important;
+      }
+      
+      .brand-logo { 
+        height: 28px !important;
+      }
+      
+      .nav {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+      
+      .nav a {
+        font-size: 0.8rem !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .topbar {
+        padding: 10px 0 !important;
+        min-height: 50px !important;
+      }
+      
+      #gov-seal { 
+        height: 32px !important;
         margin-right: 8px !important; 
+      }
+      
+      .brand-logo { 
+        height: 24px !important;
+      }
+      
+      .goldbar {
+        padding: 6px 0 !important;
+        min-height: 45px !important;
       }
     }
   </style>
@@ -63,14 +167,15 @@
 </head>
 <body>
   <header class="site-header" role="banner">
+    <!-- Barra superior guinda (más grande) -->
     <div class="topbar">
-      <div class="container topbar-inner" style="display:flex; align-items:center; justify-content:space-between;">
+      <div class="container topbar-inner">
         <!-- Sello del Gobierno -->
         <div style="display:flex; align-items:center;">
           <img id="gov-seal" src="gobierno_mexico.png" alt="Gobierno de México" />
         </div>
 
-        <nav class="top-actions" aria-label="Acciones" style="display:flex; gap:12px; align-items:center;">
+        <nav class="top-actions" aria-label="Acciones">
           <a href="#">Trámites</a>
           <a href="#">Gobierno</a>
           <button aria-label="Buscar" class="search">🔍</button>
@@ -78,14 +183,15 @@
       </div>
     </div>
 
+    <!-- Barra dorada (más pequeña) -->
     <div class="goldbar" role="navigation" aria-label="Barra principal">
       <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
-        <!-- Logo SIGED como imagen -->
+        <!-- Logo SIGED como imagen (más pequeño) -->
         <a class="brand-logo" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED">
           <img src="logo_blanco.png" alt="SIGED" />
         </a>
 
-        <ul class="nav" role="menubar" aria-label="Menú principal" style="display:flex; gap:12px; list-style:none; margin:0; padding:0;">
+        <ul class="nav" role="menubar" aria-label="Menú principal">
           <li role="none"><a role="menuitem" href="#">¿Quiénes somos?</a></li>
           <li role="none"><a role="menuitem" href="#">Consultas</a></li>
           <li role="none"><a role="menuitem" href="#">Estadística Educativa</a></li>
