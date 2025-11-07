@@ -31,21 +31,22 @@
       padding: 0 20px;
     }
 
-    /* Barra superior guinda - MUCHO MÁS GRANDE */
+    /* Barra superior guinda como imagen */
     .topbar {
-      background-color: #8b1538 !important;
-      padding: 20px 0 !important;
-      min-height: 85px !important;
+      width: 100%;
+      overflow: hidden;
+      background-color: #8b1538;
     }
 
-    .topbar-inner {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      height: 100%;
+    .topbar img {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: 85px;
+      object-fit: cover;
     }
 
-    /* Barra dorada - MUCHO MÁS PEQUEÑA */
+    /* Barra dorada - MÁS PEQUEÑA */
     .goldbar {
       background-color: #b8952c !important;
       padding: 8px 0 !important;
@@ -59,17 +60,7 @@
       height: 100%;
     }
 
-    /* Sello gubernamental - proporcionalmente más grande */
-    #gov-seal {
-      height: 50px !important;
-      width: auto !important;
-      display: inline-block !important;
-      vertical-align: middle !important;
-      margin-right: 12px !important;
-      image-rendering: -webkit-optimize-contrast;
-    }
-
-    /* Texto SIGED - más pequeño */
+    /* Texto SIGED */
     .brand-text {
       color: #ffffff !important;
       font-family: 'Montserrat', Arial, sans-serif !important;
@@ -88,33 +79,6 @@
     .brand-text:hover {
       color: #ffffff !important;
       text-decoration: none !important;
-    }
-
-    /* Estilos para los enlaces de la barra superior */
-    .top-actions {
-      display: flex !important;
-      gap: 24px !important;
-      align-items: center !important;
-    }
-
-    .top-actions a,
-    .top-actions button {
-      color: #ffffff !important;
-      text-decoration: none !important;
-      font-size: 0.95rem !important;
-      font-weight: 400 !important;
-    }
-
-    .top-actions a:hover {
-      text-decoration: underline !important;
-    }
-
-    .top-actions button {
-      background: none !important;
-      border: none !important;
-      cursor: pointer !important;
-      font-size: 1.1rem !important;
-      padding: 4px 8px !important;
     }
 
     /* Estilos para el menú de la barra dorada */
@@ -206,13 +170,8 @@
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
-      .topbar {
-        padding: 16px 0 !important;
-        min-height: 75px !important;
-      }
-      
-      #gov-seal { 
-        height: 42px !important;
+      .topbar img {
+        max-height: 75px;
       }
       
       .brand-text { 
@@ -239,14 +198,8 @@
     }
 
     @media (max-width: 480px) {
-      .topbar {
-        padding: 14px 0 !important;
-        min-height: 65px !important;
-      }
-      
-      #gov-seal { 
-        height: 36px !important;
-        margin-right: 8px !important; 
+      .topbar img {
+        max-height: 65px;
       }
       
       .brand-text { 
@@ -256,15 +209,6 @@
       .goldbar {
         padding: 5px 0 !important;
         min-height: 38px !important;
-      }
-
-      .top-actions {
-        gap: 12px !important;
-      }
-
-      .top-actions a,
-      .top-actions button {
-        font-size: 0.85rem !important;
       }
 
       .nav {
@@ -281,23 +225,12 @@
 </head>
 <body>
   <header class="site-header" role="banner">
-    <!-- Barra superior guinda (MUCHO MÁS GRANDE - 85px) -->
+    <!-- Barra superior guinda (IMAGEN COMPLETA) -->
     <div class="topbar">
-      <div class="container topbar-inner">
-        <!-- Sello del Gobierno -->
-        <div style="display:flex; align-items:center;">
-          <img id="gov-seal" src="gobierno_mexico.png" alt="Gobierno de México" />
-        </div>
-
-        <nav class="top-actions" aria-label="Acciones">
-          <a href="#">Trámites</a>
-          <a href="#">Gobierno</a>
-          <button aria-label="Buscar" class="search">🔍</button>
-        </nav>
-      </div>
+      <img src="barra_guinda.png" alt="Gobierno de México - Trámites y Gobierno" />
     </div>
 
-    <!-- Barra dorada (MUCHO MÁS PEQUEÑA - 42px) -->
+    <!-- Barra dorada (MÁS PEQUEÑA) -->
     <div class="goldbar" role="navigation" aria-label="Barra principal">
       <div class="container">
         <!-- Texto SIGED -->
