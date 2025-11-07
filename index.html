@@ -5,15 +5,23 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Consulta de documentos académicos electrónicos — SIGED</title>
 
-  <!-- Tu CSS principal -->
+  <!-- Tu CSS principal (mantengo el cache-bust que usabas) -->
   <link rel="stylesheet" href="./styles.css?v=20251030">
 
-  <!-- Reglas pequeñas para forzar que el logo se muestre y proporcionar fallback de texto si falla -->
-  <style>
-    .topbar .container, .goldbar .container { display:flex; align-items:center; justify-content:space-between; }
+  <!-- Fuente recomendada para aproximar la tipografía del logo -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
 
-    /* Sello gubernamental (protegido) */
-    #gov-seal {
+  <!-- Reglas específicas y overrides para que "SIGED" (Opción B) se vea como el logo,
+       sin afectar la imagen gobierno_mexico.png. Pega al final de tu CSS si prefieres -->
+  <style>
+    /* Forzar color dorado en la barra principal para que el texto blanco contraste como en el logo */
+    .goldbar {
+      background-color: #b1882f !important; /* dorado similar al ejemplo */
+    }
+
+    /* Blindaje y ajuste del sello gubernamental */
+    #gov-seal,
+    .topbar .seal img {
       height: 34px !important;
       display: inline-block !important;
       vertical-align: middle !important;
@@ -21,50 +29,55 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Imagen del logo SIGED */
-    .brand-logo {
+    /* Estilos exclusivos para la versión de texto "SIGED" (Opción B) */
+    .brand.brand-text,
+    .goldbar .brand.brand-text {
+      color: #ffffff !important;
+      font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+      font-weight: 900 !important;
+      font-size: 34px !important;       /* Ajusta este valor si quieres más/menos grande */
+      line-height: 1 !important;
+      letter-spacing: 0.4px !important; /* kerning aproximado */
+      text-transform: uppercase !important;
       display: inline-block !important;
-      height: 40px !important;
-      max-height: 48px !important;
-      width: auto !important;
+      padding: 6px 8px !important;
+      margin: 0 !important;
+      margin-left: 0.5rem !important;   /* separación respecto al borde si la hay */
+      text-decoration: none !important;
+      -webkit-font-smoothing: antialiased !important;
+      -moz-osx-font-smoothing: grayscale !important;
+      white-space: nowrap !important;
       vertical-align: middle !important;
-      margin-right: 12px !important;
+      transform: translateY(-1px) !important; /* ajuste fino vertical */
+      box-sizing: border-box !important;
     }
 
-    /* Texto de respaldo: oculto por defecto, se mostrará si la imagen falla */
-    .brand-fallback {
-      display: none;
-      color: #fff;
-      font-family: 'Merriweather', Georgia, serif;
-      font-weight: 900;
-      font-size: 34px;
-      letter-spacing: .4px;
-      text-transform: uppercase;
-      vertical-align: middle;
-      margin-left: 0.5rem;
+    /* Aumentar especificidad si .container impone tamaños */
+    .goldbar .container .brand.brand-text {
+      font-size: 34px !important;
+      letter-spacing: 0.4px !important;
     }
 
-    /* Si por alguna razón tu CSS global oculta .brand-logo, aumenta especificidad */
-    .goldbar .container .brand-logo { display:inline-block !important; }
+    /* Si existe un logo SVG/PNG alterno con clase brand-logo y quieres ocultarlo al usar texto: */
+    .brand-logo { display: none !important; }
 
-    /* Mantén la barra con el color dorado */
-    .goldbar { background: #b1882f; }
-
-    /* Responsive */
-    @media (max-width:480px) {
-      .brand-logo { height: 32px !important; }
-      #gov-seal { height: 28px !important; }
-      .brand-fallback { font-size: 22px; }
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .brand.brand-text,
+      .goldbar .brand.brand-text { font-size: 22px !important; padding: 4px 6px !important; transform: translateY(0) !important; }
+      #gov-seal { height: 28px !important; margin-right: 8px !important; }
     }
   </style>
+
+  <meta name="description" content="Consulta de documentos electrónicos de titulación — réplica para pruebas.">
 </head>
 <body>
   <header class="site-header" role="banner">
-    <!-- Barra superior con sello del Gobierno -->
     <div class="topbar">
-      <div class="container topbar-inner">
+      <div class="container topbar-inner" style="display:flex; align-items:center; justify-content:space-between;">
+        <!-- Sello del Gobierno (mantenido y protegido por id="gov-seal") -->
         <div style="display:flex; align-items:center;">
-          <img id="gov-seal" src="gobierno_mexico.png" alt="Gobierno de México">
+          <img id="gov-seal" src="gobierno_mexico.png" alt="Gobierno de México" />
         </div>
 
         <nav class="top-actions" aria-label="Acciones" style="display:flex; gap:12px; align-items:center;">
@@ -75,27 +88,10 @@
       </div>
     </div>
 
-    <!-- Barra dorada principal -->
     <div class="goldbar" role="navigation" aria-label="Barra principal">
-      <div class="container">
-        <!-- Link de marca: img + fallback textual.
-             IMPORTANTE: uso el nombre exacto que aparece en tu repo ("logo_blanco.svg.png").
-             Si el archivo se llama distinto cámbialo aquí (o renómbralo en el repo). -->
-        <a class="brand" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED" style="display:flex; align-items:center;">
-          <img
-            id="brand-img"
-            class="brand-logo"
-            src="logo_blanco.svg.png"
-            alt="SIGED"
-            onerror="
-              // Si la imagen no carga: ocultarla y mostrar el texto fallback
-              this.style.display='none';
-              var f = document.getElementById('brand-fallback');
-              if(f) f.style.display='inline-block';
-            ">
-          <!-- Texto fallback: se mostrará sólo si la imagen falla (gracias al onerror anterior) -->
-          <span id="brand-fallback" class="brand-fallback" aria-hidden="false">SIGED</span>
-        </a>
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+        <!-- Opción B: texto estilizado "SIGED" (editable y con estilos aplicados) -->
+        <a class="brand brand-text" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED">SIGED</a>
 
         <ul class="nav" role="menubar" aria-label="Menú principal" style="display:flex; gap:12px; list-style:none; margin:0; padding:0;">
           <li role="none"><a role="menuitem" href="#">¿Quiénes somos?</a></li>
@@ -107,10 +103,54 @@
         </ul>
       </div>
     </div>
+
+    <div class="hero" role="region" aria-label="Encabezado">
+      <div class="container hero-inner">
+        <h1>Sistema de Información y Gestión Educativa</h1>
+        <h2>Consulta de documentos académicos electrónicos</h2>
+      </div>
+    </div>
   </header>
 
   <main class="container" role="main">
-    <!-- ... contenido ... -->
+    <section class="card" aria-labelledby="detalle-title">
+      <div class="row" style="align-items:center;">
+        <div style="width:70px">
+          <img class="img_resp" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%235C1530'/%3E%3Ctext x='50%25' y='55%25' fill='%23fff' font-size='8' text-anchor='middle' font-family='Arial' dy='.35em'%3ETE%3C/text%3E%3C/svg%3E" alt="Título Electrónico">
+        </div>
+
+        <div class="col">
+          <label id="detalle-title">Nombre:</label>
+          <div class="value">ERIKA ELIZABETH ESPINOZA MARQUEZ</div>
+        </div>
+
+        <div class="col">
+          <label>Perfil:</label>
+          <div class="value" style="text-transform:uppercase">LICENCIATURA EN PEDAGOGÍA</div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:16px;">
+        <div class="col">
+          <label>Dependencia:</label>
+          <div class="value" style="text-transform:uppercase">DIRECCIÓN GENERAL DE ACREDITACIÓN, INCORPORACIÓN Y REVALIDACIÓN</div>
+        </div>
+
+        <div class="col">
+          <label>Folio:</label>
+          <div class="value">TE-LPE-245301-090835-02644-20</div>
+        </div>
+
+        <div class="col">
+          <label>Fecha de Expedición:</label>
+          <div class="value">12/06/2020</div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="container" style="padding:20px 0;color:#6b6b6b;font-size:0.9rem;">
+    <p style="margin:0">Réplica para pruebas — no es el sitio oficial.</p>
+  </footer>
 </body>
 </html>
