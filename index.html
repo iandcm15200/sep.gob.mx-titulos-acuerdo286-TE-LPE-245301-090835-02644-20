@@ -31,25 +31,54 @@
       padding: 0 20px;
     }
 
-    /* Barra superior guinda como imagen - SIN MÁRGENES */
+    /* Barra superior guinda */
     .topbar {
-      width: 100%;
-      background-color: #8b1538;
-      position: relative;
-      height: 85px;
-      overflow: hidden;
-      margin: 0 !important;
-      padding: 0 !important;
+      background-color: #8b1538 !important;
+      padding: 20px 0 !important;
+      min-height: 85px !important;
     }
 
-    .topbar img {
-      width: 100%;
-      height: 85px;
-      display: block;
-      object-fit: cover;
-      object-position: center;
-      margin: 0 !important;
-      padding: 0 !important;
+    .topbar-inner {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+
+    /* Sello gubernamental */
+    #gov-seal {
+      height: 50px !important;
+      width: auto !important;
+      display: inline-block !important;
+      vertical-align: middle !important;
+      margin-right: 12px !important;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    /* Enlaces de la barra superior */
+    .top-actions {
+      display: flex !important;
+      gap: 24px !important;
+      align-items: center !important;
+    }
+
+    .top-actions a,
+    .top-actions button {
+      color: #ffffff !important;
+      text-decoration: none !important;
+      font-size: 0.95rem !important;
+      font-weight: 400 !important;
+    }
+
+    .top-actions a:hover {
+      text-decoration: underline !important;
+    }
+
+    .top-actions button {
+      background: none !important;
+      border: none !important;
+      cursor: pointer !important;
+      font-size: 1.1rem !important;
+      padding: 4px 8px !important;
     }
 
     /* Barra dorada - MÁS PEQUEÑA */
@@ -177,11 +206,12 @@
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .topbar {
-        height: 75px;
+        padding: 16px 0 !important;
+        min-height: 75px !important;
       }
       
-      .topbar img {
-        height: 75px;
+      #gov-seal { 
+        height: 42px !important;
       }
       
       .brand-text { 
@@ -209,11 +239,13 @@
 
     @media (max-width: 480px) {
       .topbar {
-        height: 65px;
+        padding: 14px 0 !important;
+        min-height: 65px !important;
       }
       
-      .topbar img {
-        height: 65px;
+      #gov-seal { 
+        height: 36px !important;
+        margin-right: 8px !important; 
       }
       
       .brand-text { 
@@ -223,6 +255,15 @@
       .goldbar {
         padding: 5px 0 !important;
         min-height: 38px !important;
+      }
+
+      .top-actions {
+        gap: 12px !important;
+      }
+
+      .top-actions a,
+      .top-actions button {
+        font-size: 0.85rem !important;
       }
 
       .nav {
@@ -239,12 +280,23 @@
 </head>
 <body>
   <header class="site-header" role="banner">
-    <!-- Barra superior guinda (IMAGEN COMPLETA SIN MÁRGENES) -->
+    <!-- Barra superior guinda -->
     <div class="topbar">
-      <img src="barra_guinda.png" alt="Gobierno de México - Trámites y Gobierno" />
+      <div class="container topbar-inner">
+        <!-- Sello del Gobierno -->
+        <div style="display:flex; align-items:center;">
+          <img id="gov-seal" src="gobierno_mexico.png" alt="Gobierno de México" />
+        </div>
+
+        <nav class="top-actions" aria-label="Acciones">
+          <a href="#">Trámites</a>
+          <a href="#">Gobierno</a>
+          <button aria-label="Buscar" class="search">🔍</button>
+        </nav>
+      </div>
     </div>
 
-    <!-- Barra dorada (MÁS PEQUEÑA) -->
+    <!-- Barra dorada -->
     <div class="goldbar" role="navigation" aria-label="Barra principal">
       <div class="container">
         <!-- Texto SIGED -->
