@@ -8,18 +8,17 @@
   <!-- Tu CSS principal (mantengo el cache-bust que usabas) -->
   <link rel="stylesheet" href="./styles.css?v=20251030">
 
-  <!-- Fuente recomendada para aproximar la tipografía del logo -->
+  <!-- Fuente (opcional, no necesaria si usas la imagen del logo) -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
 
-  <!-- Reglas específicas y overrides para que "SIGED" (Opción B) se vea como el logo,
-       sin afectar la imagen gobierno_mexico.png. Pega al final de tu CSS si prefieres -->
+  <!-- Reglas específicas (puedes moverlas al final de styles.css si prefieres) -->
   <style>
-    /* Forzar color dorado en la barra principal para que el texto blanco contraste como en el logo */
+    /* Asegura fondo dorado para la barra principal como en el diseño original */
     .goldbar {
-      background-color: #b1882f !important; /* dorado similar al ejemplo */
+      background-color: #b1882f !important;
     }
 
-    /* Blindaje y ajuste del sello gubernamental */
+    /* Protección y tamaño del sello gubernamental */
     #gov-seal,
     .topbar .seal img {
       height: 34px !important;
@@ -29,42 +28,18 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Estilos exclusivos para la versión de texto "SIGED" (Opción B) */
-    .brand.brand-text,
-    .goldbar .brand.brand-text {
-      color: #ffffff !important;
-      font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
-      font-weight: 900 !important;
-      font-size: 34px !important;       /* Ajusta este valor si quieres más/menos grande */
-      line-height: 1 !important;
-      letter-spacing: 0.4px !important; /* kerning aproximado */
-      text-transform: uppercase !important;
-      display: inline-block !important;
-      padding: 6px 8px !important;
-      margin: 0 !important;
-      margin-left: 0.5rem !important;   /* separación respecto al borde si la hay */
-      text-decoration: none !important;
-      -webkit-font-smoothing: antialiased !important;
-      -moz-osx-font-smoothing: grayscale !important;
-      white-space: nowrap !important;
-      vertical-align: middle !important;
-      transform: translateY(-1px) !important; /* ajuste fino vertical */
-      box-sizing: border-box !important;
+    /* Logo SIGED: mostramos la imagen (svg/png) y ocultamos el fallback de texto */
+    .brand-logo {
+      height: 40px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 12px;
     }
+    .brand.brand-text { display: none !important; } /* oculta la versión textual si existe */
 
-    /* Aumentar especificidad si .container impone tamaños */
-    .goldbar .container .brand.brand-text {
-      font-size: 34px !important;
-      letter-spacing: 0.4px !important;
-    }
-
-    /* Si existe un logo SVG/PNG alterno con clase brand-logo y quieres ocultarlo al usar texto: */
-    .brand-logo { display: none !important; }
-
-    /* Responsive adjustments */
+    /* Responsive: ajuste en móviles */
     @media (max-width: 480px) {
-      .brand.brand-text,
-      .goldbar .brand.brand-text { font-size: 22px !important; padding: 4px 6px !important; transform: translateY(0) !important; }
+      .brand-logo { height: 32px; }
       #gov-seal { height: 28px !important; margin-right: 8px !important; }
     }
   </style>
@@ -75,7 +50,7 @@
   <header class="site-header" role="banner">
     <div class="topbar">
       <div class="container topbar-inner" style="display:flex; align-items:center; justify-content:space-between;">
-        <!-- Sello del Gobierno (mantenido y protegido por id="gov-seal") -->
+        <!-- Sello del Gobierno (mantenido) -->
         <div style="display:flex; align-items:center;">
           <img id="gov-seal" src="gobierno_mexico.png" alt="Gobierno de México" />
         </div>
@@ -90,8 +65,11 @@
 
     <div class="goldbar" role="navigation" aria-label="Barra principal">
       <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
-        <!-- Opción B: texto estilizado "SIGED" (editable y con estilos aplicados) -->
-        <a class="brand brand-text" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED">SIGED</a>
+        <!-- Opción A (RECOMENDADA): usar la imagen del logo (SVG/PNG) para que SIGED se vea idéntico -->
+        <!-- Asegúrate de que logo_blanco.svg (o logo_blanco.png) exista en la misma carpeta; si está en otra ruta, actualiza src -->
+        <a class="brand" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED">
+          <img class="brand-logo" src="logo_blanco.svg" alt="SIGED" onerror="this.onerror=null; this.src='logo_blanco.png'">
+        </a>
 
         <ul class="nav" role="menubar" aria-label="Menú principal" style="display:flex; gap:12px; list-style:none; margin:0; padding:0;">
           <li role="none"><a role="menuitem" href="#">¿Quiénes somos?</a></li>
