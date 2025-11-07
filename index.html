@@ -31,29 +31,37 @@
       padding: 0 20px;
     }
 
-    /* Barra superior guinda - MÁS GRANDE (aprox 80px altura) */
+    /* Barra superior guinda - MUCHO MÁS GRANDE */
     .topbar {
       background-color: #8b1538 !important;
-      padding: 17px 0 !important;
-      min-height: 80px !important;
+      padding: 20px 0 !important;
+      min-height: 85px !important;
     }
 
     .topbar-inner {
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
+      height: 100%;
     }
 
-    /* Barra dorada - MÁS PEQUEÑA (aprox 48px altura) */
+    /* Barra dorada - MUCHO MÁS PEQUEÑA */
     .goldbar {
       background-color: #b8952c !important;
-      padding: 6px 0 !important;
-      min-height: 48px !important;
+      padding: 8px 0 !important;
+      min-height: 42px !important;
     }
 
-    /* Sello gubernamental - más grande en proporción */
+    .goldbar .container {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      height: 100%;
+    }
+
+    /* Sello gubernamental - proporcionalmente más grande */
     #gov-seal {
-      height: 46px !important;
+      height: 50px !important;
       width: auto !important;
       display: inline-block !important;
       vertical-align: middle !important;
@@ -61,12 +69,12 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Texto SIGED - más pequeño en proporción a la barra */
+    /* Texto SIGED - más pequeño */
     .brand-text {
       color: #ffffff !important;
       font-family: 'Montserrat', Arial, sans-serif !important;
       font-weight: 700 !important;
-      font-size: 22px !important;
+      font-size: 20px !important;
       letter-spacing: 0.5px !important;
       text-transform: uppercase !important;
       text-decoration: none !important;
@@ -106,12 +114,13 @@
       border: none !important;
       cursor: pointer !important;
       font-size: 1.1rem !important;
+      padding: 4px 8px !important;
     }
 
     /* Estilos para el menú de la barra dorada */
     .nav {
       display: flex !important;
-      gap: 18px !important;
+      gap: 16px !important;
       list-style: none !important;
       margin: 0 !important;
       padding: 0 !important;
@@ -121,7 +130,7 @@
     .nav a {
       color: #ffffff !important;
       text-decoration: none !important;
-      font-size: 0.88rem !important;
+      font-size: 0.85rem !important;
       font-weight: 500 !important;
       white-space: nowrap !important;
     }
@@ -198,30 +207,30 @@
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .topbar {
-        padding: 14px 0 !important;
-        min-height: 70px !important;
+        padding: 16px 0 !important;
+        min-height: 75px !important;
       }
       
       #gov-seal { 
-        height: 40px !important;
+        height: 42px !important;
       }
       
       .brand-text { 
-        font-size: 20px !important;
+        font-size: 18px !important;
       }
 
       .goldbar {
-        padding: 5px 0 !important;
-        min-height: 45px !important;
+        padding: 6px 0 !important;
+        min-height: 40px !important;
       }
       
       .nav {
         flex-wrap: wrap !important;
-        gap: 12px !important;
+        gap: 10px !important;
       }
       
       .nav a {
-        font-size: 0.82rem !important;
+        font-size: 0.8rem !important;
       }
 
       .row {
@@ -231,22 +240,22 @@
 
     @media (max-width: 480px) {
       .topbar {
-        padding: 12px 0 !important;
-        min-height: 60px !important;
+        padding: 14px 0 !important;
+        min-height: 65px !important;
       }
       
       #gov-seal { 
-        height: 34px !important;
+        height: 36px !important;
         margin-right: 8px !important; 
       }
       
       .brand-text { 
-        font-size: 18px !important;
+        font-size: 16px !important;
       }
       
       .goldbar {
-        padding: 4px 0 !important;
-        min-height: 42px !important;
+        padding: 5px 0 !important;
+        min-height: 38px !important;
       }
 
       .top-actions {
@@ -263,7 +272,7 @@
       }
 
       .nav a {
-        font-size: 0.75rem !important;
+        font-size: 0.72rem !important;
       }
     }
   </style>
@@ -272,7 +281,7 @@
 </head>
 <body>
   <header class="site-header" role="banner">
-    <!-- Barra superior guinda (MÁS GRANDE - 80px) -->
+    <!-- Barra superior guinda (MUCHO MÁS GRANDE - 85px) -->
     <div class="topbar">
       <div class="container topbar-inner">
         <!-- Sello del Gobierno -->
@@ -288,9 +297,9 @@
       </div>
     </div>
 
-    <!-- Barra dorada (MÁS PEQUEÑA - 48px) -->
+    <!-- Barra dorada (MUCHO MÁS PEQUEÑA - 42px) -->
     <div class="goldbar" role="navigation" aria-label="Barra principal">
-      <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="container">
         <!-- Texto SIGED -->
         <a class="brand-text" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED">
           SIGED
