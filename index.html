@@ -14,24 +14,14 @@
       <div class="container topbar-inner">
 
         <!-- ========== Opción A (RECOMENDADA): usar el SVG/PNG exacto ========== -->
-        <!-- Reemplaza los nombres en src si tu archivo tiene otro nombre/ubicación.
-             Intentará logo_blanco.svg, luego logo_blanco.png, luego logo_blanco.svg.png.
-             Si ninguna carga, mostrará el texto "SIGED" como fallback. -->
-        <a class="brand" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED" style="display:flex; align-items:center;">
-          <img
-            class="brand-logo"
-            src="logo_blanco.svg"
-            alt="SIGED"
-            onerror="
-              if(!this._tried){ this._tried = 1; this.src = 'logo_blanco.png'; }
-              else if(this._tried === 1){ this._tried = 2; this.src = 'logo_blanco.svg.png'; }
-              else { this.style.display='none'; var fb = document.getElementById('brand-fallback'); if(fb) fb.style.display='inline-block'; }">
-          <!-- fallback textual: solo visible si las imágenes fallan -->
-          <span id="brand-fallback" style="display:none; color:#fff; font-weight:700; font-size:34px; font-family: Georgia, 'Times New Roman', serif; text-transform:uppercase; margin-left:0.5rem;">SIGED</span>
+        <!-- Reemplaza 'logo_blanco.svg' por la ruta correcta si está en otra carpeta.
+             Esta opción mantiene exactamente la apariencia del logo. -->
+        <a class="brand" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer">
+          <img src="logo_blanco.svg" alt="SIGED" class="brand-logo">
         </a>
 
         <!-- ========== Opción B (fallback / aproximación con texto) ========== -->
-        <!-- Si prefieres usar texto en lugar de imagen, comenta el bloque anterior y descomenta la siguiente línea:
+        <!-- Si prefieres texto en lugar de imagen, comenta la línea anterior y descomenta la siguiente:
         <a class="brand brand-text" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer">SIGED</a>
         -->
         <nav class="top-actions" aria-label="Acciones">
@@ -44,4 +34,4 @@
     <!-- resto del header... -->
   </header>
 </body>
-</html>
+</html> 
