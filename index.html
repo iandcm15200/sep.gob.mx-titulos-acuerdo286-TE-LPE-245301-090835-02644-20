@@ -5,22 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Consulta de documentos académicos electrónicos — SIGED</title>
 
-  <!-- Tu CSS principal (mantengo el cache-bust que usabas) -->
+  <!-- Tu CSS principal -->
   <link rel="stylesheet" href="./styles.css?v=20251030">
 
-  <!-- Fuente (opcional, no necesaria si usas la imagen del logo) -->
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
-
-  <!-- Reglas específicas (puedes moverlas al final de styles.css si prefieres) -->
+  <!-- Estilos pequeños aquí para forzar visibilidad del logo sin tocar tu styles.css -->
   <style>
-    /* Asegura fondo dorado para la barra principal como en el diseño original */
-    .goldbar {
-      background-color: #b1882f !important;
-    }
+    /* Asegura que la barra dorada y la disposición del header funcionen bien */
+    .topbar .container, .goldbar .container { display:flex; align-items:center; justify-content:space-between; }
 
     /* Protección y tamaño del sello gubernamental */
-    #gov-seal,
-    .topbar .seal img {
+    #gov-seal {
       height: 34px !important;
       display: inline-block !important;
       vertical-align: middle !important;
@@ -28,31 +22,38 @@
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Logo SIGED: mostramos la imagen (svg/png) y ocultamos el fallback de texto */
+    /* Logo SIGED: forzamos que se muestre (si tu styles.css lo ocultó) */
     .brand-logo {
-      height: 40px;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 12px;
+      display: inline-block !important;
+      height: 40px !important;
+      max-height: 48px !important;
+      width: auto !important;
+      vertical-align: middle !important;
+      margin-right: 12px !important;
     }
-    .brand.brand-text { display: none !important; } /* oculta la versión textual si existe */
 
-    /* Responsive: ajuste en móviles */
+    /* Asegura que el texto fallback no aparezca si prefieres la imagen */
+    .brand.brand-text { display: none !important; }
+
+    /* Z-index y background para evitar solapamientos */
+    .topbar { background: #6b1f2a; z-index: 30; position: relative; }
+    .goldbar { background: #b1882f; z-index: 20; position: relative; }
+
+    /* Responsive pequeño */
     @media (max-width: 480px) {
-      .brand-logo { height: 32px; }
-      #gov-seal { height: 28px !important; margin-right: 8px !important; }
+      .brand-logo { height: 32px !important; }
+      #gov-seal { height: 28px !important; }
     }
   </style>
-
-  <meta name="description" content="Consulta de documentos electrónicos de titulación — réplica para pruebas.">
 </head>
 <body>
   <header class="site-header" role="banner">
+    <!-- Barra superior con sello del Gobierno -->
     <div class="topbar">
-      <div class="container topbar-inner" style="display:flex; align-items:center; justify-content:space-between;">
-        <!-- Sello del Gobierno (mantenido) -->
+      <div class="container topbar-inner">
         <div style="display:flex; align-items:center;">
-          <img id="gov-seal" src="gobierno_mexico.png" alt="Gobierno de México" />
+          <!-- Sello gubernamental (archivo: gobierno_mexico.png) -->
+          <img id="gov-seal" src="gobierno_mexico.png" alt="Gobierno de México">
         </div>
 
         <nav class="top-actions" aria-label="Acciones" style="display:flex; gap:12px; align-items:center;">
@@ -63,12 +64,24 @@
       </div>
     </div>
 
+    <!-- Barra dorada principal -->
     <div class="goldbar" role="navigation" aria-label="Barra principal">
-      <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
-        <!-- Opción A (RECOMENDADA): usar la imagen del logo (SVG/PNG) para que SIGED se vea idéntico -->
-        <!-- Asegúrate de que logo_blanco.svg (o logo_blanco.png) exista en la misma carpeta; si está en otra ruta, actualiza src -->
+      <div class="container">
+        <!-- Marca: imagen del logo SIGED (SVG preferido). 
+             onerror intenta alternativas si el nombre real del archivo es distinto
+             (p.ej. logo_blanco.svg.png o logo_blanco.png). -->
         <a class="brand" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer" aria-label="SIGED">
-          <img class="brand-logo" src="logo_blanco.svg" alt="SIGED" onerror="this.onerror=null; this.src='logo_blanco.png'">
+          <img
+            class="brand-logo"
+            src="logo_blanco.svg"
+            alt="SIGED"
+            onerror="
+              // si falla logo_blanco.svg, intenta logo_blanco.svg.png, luego logo_blanco.png
+              if(this._tries === undefined) this._tries = 0;
+              this._tries++;
+              if(this._tries === 1){ this.src = 'logo_blanco.svg.png'; }
+              else if(this._tries === 2){ this.src = 'logo_blanco.png'; }
+              else { this.style.display = 'none'; }">
         </a>
 
         <ul class="nav" role="menubar" aria-label="Menú principal" style="display:flex; gap:12px; list-style:none; margin:0; padding:0;">
@@ -81,54 +94,10 @@
         </ul>
       </div>
     </div>
-
-    <div class="hero" role="region" aria-label="Encabezado">
-      <div class="container hero-inner">
-        <h1>Sistema de Información y Gestión Educativa</h1>
-        <h2>Consulta de documentos académicos electrónicos</h2>
-      </div>
-    </div>
   </header>
 
   <main class="container" role="main">
-    <section class="card" aria-labelledby="detalle-title">
-      <div class="row" style="align-items:center;">
-        <div style="width:70px">
-          <img class="img_resp" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%235C1530'/%3E%3Ctext x='50%25' y='55%25' fill='%23fff' font-size='8' text-anchor='middle' font-family='Arial' dy='.35em'%3ETE%3C/text%3E%3C/svg%3E" alt="Título Electrónico">
-        </div>
-
-        <div class="col">
-          <label id="detalle-title">Nombre:</label>
-          <div class="value">ERIKA ELIZABETH ESPINOZA MARQUEZ</div>
-        </div>
-
-        <div class="col">
-          <label>Perfil:</label>
-          <div class="value" style="text-transform:uppercase">LICENCIATURA EN PEDAGOGÍA</div>
-        </div>
-      </div>
-
-      <div class="row" style="margin-top:16px;">
-        <div class="col">
-          <label>Dependencia:</label>
-          <div class="value" style="text-transform:uppercase">DIRECCIÓN GENERAL DE ACREDITACIÓN, INCORPORACIÓN Y REVALIDACIÓN</div>
-        </div>
-
-        <div class="col">
-          <label>Folio:</label>
-          <div class="value">TE-LPE-245301-090835-02644-20</div>
-        </div>
-
-        <div class="col">
-          <label>Fecha de Expedición:</label>
-          <div class="value">12/06/2020</div>
-        </div>
-      </div>
-    </section>
+    <!-- Tu contenido aquí -->
   </main>
-
-  <footer class="container" style="padding:20px 0;color:#6b6b6b;font-size:0.9rem;">
-    <p style="margin:0">Réplica para pruebas — no es el sitio oficial.</p>
-  </footer>
 </body>
 </html>
