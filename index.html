@@ -3,73 +3,111 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SIGED - Sistema de Información y Gestión Educativa</title>
+  <title>Consulta de documentos académicos electrónicos — SIGED</title>
 
-  <!-- Enlaza tu hoja de estilos principal (está en tu repo como styles.css) -->
-  <link rel="stylesheet" href="styles.css">
+  <!-- Enlace al CSS con cache-bust (incrementa el valor cuando actualices CSS) -->
+  <link rel="stylesheet" href="./styles.css?v=20251030">
 
-  <!-- Metadatos básicos -->
-  <meta name="description" content="SIGED - Sistema de Información y Gestión Educativa" />
+  <!-- Metadatos recomendados -->
+  <meta name="description" content="Consulta de documentos electrónicos de titulación — réplica para pruebas.">
 </head>
 <body>
-  <!-- HEADER: barra superior con sello del Gobierno y barra dorada con el título SIGED.
-       Notas:
-       - Asegúrate de que los archivos gobierno_mexico.png y logo_blanco.svg estén en la misma carpeta que este index.html.
-       - Si prefieres usar solo uno de los recursos, elimina el <img> que no uses.
-       - Si tienes rutas diferentes, actualiza los atributos src en las etiquetas <img>. -->
-  <header class="site-header" role="banner" aria-label="Encabezado principal">
-    <!-- Barra superior (color vino) con el sello de Gobierno -->
-    <div class="gov-top" style="background:#6b1f2a; padding:8px 12px;">
-      <!-- Reemplaza 'gobierno_mexico.png' por la ruta/URL correcta si está en otra carpeta -->
-      <img src="gobierno_mexico.png"
-           alt="Sello Gobierno de México"
-           style="height:34px; display:inline-block; vertical-align:middle;"
-           id="gov-seal">
-      <!-- Si quedaba texto estático "Gobierno de México", se ha eliminado intencionalmente.
-           El <img> anterior lo reemplaza. -->
-      <div style="display:inline-block; margin-left:12px; vertical-align:middle; color:#fff; font-size:13px; font-weight:600;">
-        <!-- Opcional: si quieres mostrar texto adicional, actívalo. Por defecto lo dejé vacío -->
+  <header class="site-header" role="banner">
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <!-- Reemplazado: se quitó el texto "Gobierno de México" y se puso la imagen -->
+        <!-- Asegúrate de que gobierno_mexico.png esté en la misma carpeta que este index.html
+             o cambia la ruta en el atributo src por la correcta (ej. ./assets/gobierno_mexico.png). -->
+        <img src="gobierno_mexico.png"
+             alt="Gobierno de México"
+             class="seal"
+             style="height:34px; display:inline-block; vertical-align:middle;"
+             id="gov-seal">
+
+        <nav class="top-actions" aria-label="Acciones">
+          <a href="#">Trámites</a>
+          <a href="#">Gobierno</a>
+          <button aria-label="Buscar" class="search">🔍</button>
+        </nav>
       </div>
     </div>
 
-    <!-- Barra principal (dorado) con el logotipo del sitio o el nombre SIGED -->
-    <div class="brand-bar" style="background:#b1882f; padding:14px 16px; display:flex; align-items:center;">
-      <!-- Aquí usamos el SVG principal del logo (logo_blanco.svg) si lo tienes en el repo.
-           Si tu logo_blanco.svg incluye internamente la referencia al PNG del Gobierno,
-           asegúrate de que el PNG exista también en la misma carpeta. -->
-      <img src="logo_blanco.svg"
-           alt="SIGED - Logo"
-           style="height:40px; display:inline-block; vertical-align:middle; margin-right:16px;"
-           id="siged-logo"
-           onerror="this.style.display='none'">
-      <!-- En caso de que quieras mostrar texto en lugar del SVG (fallback) -->
-      <h1 style="margin:0; color:#fff; font-size:28px; letter-spacing:1px;">SIGED</h1>
+    <div class="goldbar" role="navigation" aria-label="Barra principal">
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+        <!-- Marca: enlace puntual al SIGED oficial -->
+        <a class="brand" href="https://siged.sep.gob.mx/SIGED/" target="_blank" rel="noopener noreferrer">SIGED</a>
+
+        <ul class="nav" role="menubar" aria-label="Menú principal">
+          <li role="none"><a role="menuitem" href="#">¿Quiénes somos?</a></li>
+          <li role="none"><a role="menuitem" href="#">Consultas</a></li>
+          <li role="none"><a role="menuitem" href="#">Estadística Educativa</a></li>
+          <li role="none"><a role="menuitem" href="#">Indicadores Educativos</a></li>
+          <li role="none"><a role="menuitem" href="#">Datos abiertos</a></li>
+          <li role="none"><a role="menuitem" href="#">Aviso de Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hero" role="region" aria-label="Encabezado">
+      <div class="container hero-inner">
+        <h1>Sistema de Información y Gestión Educativa</h1>
+        <h2>Consulta de documentos académicos electrónicos</h2>
+      </div>
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main role="main" aria-label="Contenido principal" style="padding:22px;">
-    <section class="intro" style="max-width:980px; margin:0 auto;">
-      <h2>Bienvenido a SIGED</h2>
-      <p>Centro de información y gestión educativa. Aquí puedes colocar la descripción general, enlaces rápidos y módulos.</p>
-    </section>
+  <main class="container" role="main">
+    <section class="card" aria-labelledby="detalle-title">
+      <div class="row" style="align-items:center;">
+        <div style="width:70px">
+          <img class="img_resp" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='50' height='50' fill='%235C1530'/%3E%3Ctext x='50%25' y='55%25' fill='%23fff' font-size='8' text-anchor='middle' font-family='Arial' dy='.35em'%3ETE%3C/text%3E%3C/svg%3E" alt="Título Electrónico">
+        </div>
 
-    <!-- Ejemplo de tarjeta informativa -->
-    <section class="cards" style="max-width:980px; margin:24px auto;">
-      <article class="card" style="background:#fff; border-radius:6px; padding:16px; box-shadow:0 1px 4px rgba(0,0,0,.08);">
-        <h3>Estado del sistema</h3>
-        <p>Panel informativo y accesos rápidos a la administración y reportes.</p>
-      </article>
+        <div class="col">
+          <label id="detalle-title">Nombre:</label>
+          <div class="value">ERIKA ELIZABETH ESPINOZA MARQUEZ</div>
+        </div>
+
+        <div class="col">
+          <label>Perfil:</label>
+          <div class="value" style="text-transform:uppercase">LICENCIATURA EN PEDAGOGÍA</div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:16px;">
+        <div class="col">
+          <label>Dependencia:</label>
+          <div class="value" style="text-transform:uppercase">DIRECCIÓN GENERAL DE ACREDITACIÓN, INCORPORACIÓN Y REVALIDACIÓN</div>
+        </div>
+
+        <div class="col">
+          <label>Folio:</label>
+          <div class="value">TE-LPE-245301-090835-02644-20</div>
+        </div>
+
+        <div class="col">
+          <label>Fecha de Expedición:</label>
+          <div class="value">12/06/2020</div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer role="contentinfo" aria-label="Pie de página" style="padding:16px; text-align:center; color:#666;">
-    <small>© <span id="year"></span> SIGED — Sistema de Información y Gestión Educativa</small>
-  </footer>
-
+  <!-- Opcional: script para añadir CSS dinámicamente y forzar versión (descomentar si lo prefieres) -->
+  <!--
   <script>
-    // Pequeño script para actualizar el año automáticamente
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = './styles.css?v=' + new Date().getTime();
+      document.head.appendChild(link);
+    })();
   </script>
+  -->
+
+  <!-- Pie mínimo -->
+  <footer class="container" style="padding:20px 0;color:#6b6b6b;font-size:0.9rem;">
+    <p style="margin:0">Réplica para pruebas — no es el sitio oficial.</p>
+  </footer>
 </body>
 </html>
